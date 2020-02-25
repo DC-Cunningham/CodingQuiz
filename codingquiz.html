@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="./Assets/style.css" />
+
+    <title>Coding Quiz</title>
+  </head>
+  <body>
+    <header>
+      <h1 class="header text-center">
+        Coding Quiz
+      </h1>
+
+      <h2 class="text-center">
+        Test your knowledge of Javascript against the clock!
+      </h2>
+      <p class="text-center">
+        Answer all the questions as fast as you can. A wrong answer will take
+        time off the clock.
+      </p>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="col-10 float-left" id="quiz-block">
+          <div class="col-2 float-right" id="timer">
+            <div class="row">
+              <div class="col-4 float-left" id="minutes">
+                10
+                <p>:</p>
+              </div>
+
+              <div class="col-4 float-left" id="seconds">
+                00
+                <p>remaining!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <h2 class="text-center">High Scores:</h2>
+          <div id="high-scores"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src=".Assets/codingquiz.js"></script>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+header {
+  background-color: lightgrey;
+}
+
+#quiz-block {
+  position: relative;
+  background-color: red;
+}
+
+#timer {
+  position: relative;
+}
