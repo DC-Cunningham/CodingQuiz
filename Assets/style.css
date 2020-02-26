@@ -1,12 +1,57 @@
+* {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
 header {
+  margin-top: 20px;
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
+  border-radius: 20px;
   background-color: lightgrey;
+  text-align: center;
 }
 
 #quiz-block {
+  margin-top: 15px;
+  border-color: black;
+  border-width: 2px;
+  border-radius: 20px;
   position: relative;
   background-color: red;
+  height: 200px;
 }
 
 #timer {
+  margin-top: 15px;
+  padding: 20px;
+  padding-top: 25px;
+  height: 100%;
   position: relative;
+  border-color: black;
+  border-width: 2px;
+  border-radius: 20px;
+  background-color: grey;
+}
+
+#minutes,
+#seconds {
+  height: 30px;
+  width: 100%;
+  text-align: center;
+}
+
+#high-score-box {
+  margin-top: 20px;
+  padding: 5px;
+  border-color: black;
+  border-width: 2px;
+  border-radius: 20px;
+  background-color: lightgrey;
+}
+
+.btn {
+  margin: 0 auto;
+  width: 80%;
 }
