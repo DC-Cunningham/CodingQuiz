@@ -51,7 +51,12 @@ header {
   background-color: lightgrey;
 }
 
-.btn {
+#timer-button {
   margin: 0 auto;
   width: 80%;
+}
+
+.btn-block {
+  width: 80%;
+  margin: 0 auto;
 }

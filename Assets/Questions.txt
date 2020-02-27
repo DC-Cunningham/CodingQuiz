@@ -1,0 +1,81 @@
+var a;
+if (a) {
+ return true;
+} else {
+ return false;
+}
+true
+false
+var b = "";
+if (b) {
+ return true;
+} else {
+ return false;
+}
+true
+false
+var a;
+var b = "";
+if (a == b) {
+ return true;
+} else {
+ return false;
+}
+true
+false
+var a = 0;
+if (a) {
+ return true;
+} else {
+ return false;
+}
+true
+false
+var a = ["a"];
+var b = "b";
+if (a.indexOf(b)) {
+ return true;
+} else {
+ return false;
+}
+true
+false
+var a = "a";
+if (a = 1) {
+ return true;
+} else {
+ return false;
+}
+true
+false
+var a = "a";
+if (a = 0) {
+ return true;
+} else {
+ return false;
+}
+true
+false
+var a = true;
+var b = false;
+if (a || b) {
+ return true;
+} else {
+ return false;
+}
+true
+false
+var a;
+var b = a || 0;
+b ===
+true
+false
+undefined
+0
+var a = ["a", "b", "c"];
+var b = ["d", "e", "f"];
+a + b ===
+["a", "b", "c", "d", "e", "f"] 
+"abcdef"
+'"a", "b", "c", "d", "e", "f"'
+"a,b,cd,e,f"
