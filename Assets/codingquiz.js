@@ -8,14 +8,68 @@ var answerBox = document.querySelector("#answers");
 var highScoreRender = document.querySelector("#high-scores");
 var Q_N_A = [
   {
-    question: "Question 1",
+    question:
+      "var a;\r\nif (a) {\r\n return true;\r\n} else {\r\n return false;\r\n}\r\na =",
     answers: ["true", "false"],
     correct: 0
   },
   {
-    question: "Question 2",
-    answers: ["Answer2-1", "Answer2-2", "Answer2-3", "Answer2-4"],
+    question:
+      'var b = "";\r\nif (b) {\r\n return true;\r\n} else {\r\n return false;\r\n}',
+    answers: ["true", "false"],
+    correct: 1
+  },
+  {
+    question:
+      'var a;\r\nvar b = "";\r\nif (a == b) {\r\n return true;\r\n} else {\r\n return false;\r\n}',
+    answers: ["true", "false"],
     correct: 0
+  },
+  {
+    question:
+      "var a = 0;\r\nif (a) {\r\n return true;\r\n} else {\r\n return false;\r\n}",
+    answers: ["true", "false"],
+    correct: 1
+  },
+  {
+    question:
+      'var a = ["a"];\r\nvar b = "b";\r\nif (a.indexOf(b)) {\r\n return true;\r\n} else {\r\n return false;\r\n}',
+    answers: ["true", "false"],
+    correct: 1
+  },
+  {
+    question:
+      'var a = "a";\r\nif (a = 1) {\r\n return true;\r\n} else {\r\n return false;\r\n}',
+    answers: ["true", "false"],
+    correct: 0
+  },
+  {
+    question:
+      'var a = "a";\r\nif (a = 0) {\r\n return true;\r\n} else {\r\n return false;\r\n}',
+    answers: ["true", "false"],
+    correct: 0
+  },
+  {
+    question:
+      "var a = true;\r\nvar b = false;\r\nif (a || b) {\r\n return true;\r\n} else {\r\n return false;\r\n}",
+    answers: ["true", "false"],
+    correct: 0
+  },
+  {
+    question: "var a;\r\nvar b = a || 0;\r\nb ===",
+    answers: ["true", "false", "undefined", 0],
+    correct: 2
+  },
+  {
+    question:
+      'var a = ["a", "b", "c"];\r\nvar b = ["d", "e", "f"];\r\na + b ===',
+    answers: [
+      '["a", "b", "c", "d", "e", "f"]',
+      "abcdef",
+      '"a", "b", "c", "d", "e", "f"',
+      "a,b,cd,e,f"
+    ],
+    correct: 3
   }
 ];
 var questionIndex = 0;
@@ -29,7 +83,7 @@ var highScores = {};
 var highScoreList = [];
 
 function quizQuestions() {
-  var quizQuestion = document.createElement("h3");
+  var quizQuestion = document.createElement("pre");
   quizQuestion.setAttribute(
     "style",
     "margin:auto; width:100%; text-align:center; padding-top:10px; margin-bottom:10px;"
@@ -119,7 +173,7 @@ function incorrect() {
 
 //  timer
 function setTime() {
-  var minutes = 1;
+  var minutes = 10;
   clearInterval(interval);
   totalSeconds = minutes * 60;
 }
@@ -189,7 +243,8 @@ function aHighScore() {
     "margin:auto; width:100%; text-align:center; padding-top:10px; margin-bottom:10px;"
   );
   questionBox.appendChild(highScoreEl);
-  highScoreEl.textContent = "Congratulations you finished before the timer";
+  highScoreEl.textContent =
+    "Congratulations you finished before the timer ran out";
   setTimeout(function() {
     clearQnA();
     initials = prompt(
