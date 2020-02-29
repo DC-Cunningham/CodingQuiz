@@ -9,7 +9,7 @@ var highScoreRender = document.querySelector("#high-scores");
 var Q_N_A = [
   {
     question: "Question 1",
-    answers: ["Answer1", "Answer2", "Answer3", "Answer4"],
+    answers: ["true", "false"],
     correct: 0
   },
   {
@@ -21,16 +21,13 @@ var Q_N_A = [
 var questionIndex = 0;
 var totalSeconds = 00;
 var secondsElapsed = 0;
+var incorrectAnswers = 0;
 var interval;
 var initials = "";
-var highScore;
-var highScores;
+var highScore = {};
+var highScores = {};
+var highScoreList = [];
 
-// create questions area in quiz-block
-
-// create answers area in quiz-block
-
-// function quizAnswers() {
 function quizQuestions() {
   var quizQuestion = document.createElement("h3");
   quizQuestion.setAttribute(
@@ -63,6 +60,7 @@ function nextQuestion() {
     aHighScore();
   }
 }
+// Clear the question box for the next function
 function clearQnA() {
   while (questionBox.hasChildNodes()) {
     questionBox.removeChild(questionBox.firstChild);
@@ -78,7 +76,7 @@ function assessor() {
   var answerTarget = event.target;
   if (answerTarget.value == Q_N_A[questionIndex].correct) {
     congratulate();
-    // if button clicked id isn't equal to answer[0] value, answer is incorrect
+    // otherwise answer is incorrect
   } else {
     secondsElapsed = secondsElapsed + 15;
     renderTime();
@@ -103,6 +101,7 @@ function congratulate() {
 }
 function incorrect() {
   clearQnA();
+  incorrectAnswers++;
   var correctEl = document.createElement("h3");
   correctEl.setAttribute(
     "style",
@@ -183,49 +182,68 @@ startQuizBtn.addEventListener("click", startTimer);
 
 function aHighScore() {
   clearQnA();
-  var highScoreTime = secondsElapsed;
+
   var highScoreEl = document.createElement("h3");
   highScoreEl.setAttribute(
     "style",
     "margin:auto; width:100%; text-align:center; padding-top:10px; margin-bottom:10px;"
   );
   questionBox.appendChild(highScoreEl);
-  highScoreEl.textContent = "Congratulations you got a High Score!";
+  highScoreEl.textContent = "Congratulations you finished before the timer";
   setTimeout(function() {
     clearQnA();
     initials = prompt(
       "Please supply your Initials so that we can put you up on the score board"
     );
-    highScores = initials + " in " + highScoreTime + " seconds";
+    highScore = {
+      initials: initials,
+      time: secondsElapsed,
+      incorrectAnswers: incorrectAnswers
+    };
+    highScoreList.push(highScore);
+    while (highScoreRender.hasChildNodes()) {
+      highScoreRender.removeChild(highScoreRender.firstChild);
+    }
+    renderHighScores();
+    highScoreDisplay();
     storeHighScores();
   }, 2000);
 }
 
-// function renderHighScores() {
-//   debugger;
-//   if (highScores === null) {
-//   } else {
-//     for (var i = 0; highScores.length; i++) {
-//       var highScore = highScores[i];
-//       var h4 = document.createElement("h4");
-//       h4.textContent = highScore;
-//       highScoreRender.appendChild(h4);
-//     }
-//   }
-// }
+function renderHighScores() {
+  while (highScoreRender.hasChildNodes()) {
+    highScoreRender.removeChild(highScoreRender.firstChild);
+  }
+  if (highScores) {
+    for (var i = 0; i < highScores.length; i++) {
+      scoreDisplayed = document.createElement("div");
+      scoreDisplayed.textContent =
+        highScores[i].initials +
+        " in " +
+        highScores[i].time +
+        " seconds with " +
+        highScores[i].incorrectAnswers +
+        " errors";
+      highScoreRender.appendChild(scoreDisplayed);
+    }
+  }
+  storeHighScores();
+}
 
 function highScoreDisplay() {
-  var storedHighScores = JSON.parse(localStorage.getItem("highScores"));
-  if (storedHighScores !== null) {
-    highScores = storedHighScores;
+  highScoreList = JSON.parse(localStorage.getItem("highScoreList"));
+  if (highScoreList !== null) {
+    highScores = highScoreList;
   }
-  // renderHighScores();
+  renderHighScores();
 }
 highScoreDisplay();
 
 function storeHighScores() {
-  debugger;
-  localStorage.setItem("highScores", JSON.stringify(highScores));
-  // highScores.push(highScore);
-  // renderHighScores();
+  localStorage.setItem("highScoreList", JSON.stringify(highScoreList));
 }
+
+// var sortedscores = highScores.sort(function(a, b) {
+//   return b.score - a.score;
+// });
+// console.log(sortedscores);
