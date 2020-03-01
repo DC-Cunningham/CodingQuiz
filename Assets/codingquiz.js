@@ -174,6 +174,7 @@ function incorrect() {
 //  timer
 function setTime() {
   var minutes = 10;
+  secondsElapsed = 0;
   clearInterval(interval);
   totalSeconds = minutes * 60;
 }
@@ -182,6 +183,7 @@ function startTimer() {
   clearQnA();
   questionIndex = 0;
   setTime();
+  renderTime();
   startQuestions();
   interval = setInterval(function() {
     secondsElapsed++;
@@ -244,7 +246,9 @@ function aHighScore() {
   );
   questionBox.appendChild(highScoreEl);
   highScoreEl.textContent =
-    "Congratulations you finished before the timer ran out";
+    "Congratulations you finished before the timer ran out with " +
+    incorrectAnswers +
+    " errors!";
   setTimeout(function() {
     clearQnA();
     initials = prompt(
@@ -255,10 +259,13 @@ function aHighScore() {
       time: secondsElapsed,
       incorrectAnswers: incorrectAnswers
     };
-    highScoreList.push(highScore);
     while (highScoreRender.hasChildNodes()) {
       highScoreRender.removeChild(highScoreRender.firstChild);
     }
+    if (highScoreList === null) {
+      highScoreList = [];
+    }
+    highScoreList.push(highScore);
     renderHighScores();
     highScoreDisplay();
     storeHighScores();
@@ -288,8 +295,18 @@ function renderHighScores() {
 function highScoreDisplay() {
   highScoreList = JSON.parse(localStorage.getItem("highScoreList"));
   if (highScoreList !== null) {
+    highScoreList.sort((a, b) =>
+      a.time > b.time
+        ? 1
+        : a.time === b.time
+        ? a.incorrectAnswers < b.incorrectAnswers
+          ? 1
+          : -1
+        : -1
+    );
     highScores = highScoreList;
   }
+  console.log(highScores);
   renderHighScores();
 }
 highScoreDisplay();
@@ -297,8 +314,3 @@ highScoreDisplay();
 function storeHighScores() {
   localStorage.setItem("highScoreList", JSON.stringify(highScoreList));
 }
-
-// var sortedscores = highScores.sort(function(a, b) {
-//   return b.score - a.score;
-// });
-// console.log(sortedscores);
