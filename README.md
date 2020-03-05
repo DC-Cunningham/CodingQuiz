@@ -20,7 +20,7 @@ THEN I can save my initials and score
 
 ## Link to deployed Application
 
-[Responsive Portfolio](https://dcrevreslabs.github.io/CodingQuiz/)
+[Coding Quiz](https://dcrevreslabs.github.io/CodingQuiz/)
 
 ## License
 
