@@ -18,9 +18,13 @@ THEN the game is over
 WHEN the game is over
 THEN I can save my initials and score
 
+## Screenshot of deployed application
+
+![alt text](https://github.com/DCRevResLabs/CodingQuiz/blob/master/Assets/Images/CodingQuizSS.png?raw=true)
+
 ## Link to deployed Application
 
-[Coding Quiz](https://dcrevreslabs.github.io/CodingQuiz/)
+[Responsive Portfolio](https://dcrevreslabs.github.io/CodingQuiz/)
 
 ## License
 
